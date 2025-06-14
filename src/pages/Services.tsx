@@ -3,7 +3,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 import GradientCard from '../components/ui/GradientCard';
-import { mockServices } from '../data/mockData';
+import { zanServices } from '../data/services';
 
 const Services = () => {
   const { t } = useLanguage();
@@ -25,7 +25,7 @@ const Services = () => {
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {mockServices.map((service, index) => (
+          {zanServices.map((service, index) => (
             <GradientCard key={service.id}>
               <div className="overflow-hidden">
                 <img 
@@ -42,13 +42,13 @@ const Services = () => {
                     {service.description}
                   </p>
                   <div className="flex flex-wrap gap-2">
-                    <span className="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">
+                    <span className="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full">
                       تصميم
                     </span>
                     <span className="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full">
                       تنفيذ
                     </span>
-                    <span className="px-3 py-1 bg-purple-100 text-purple-800 text-sm rounded-full">
+                    <span className="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full">
                       صيانة
                     </span>
                   </div>

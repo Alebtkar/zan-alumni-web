@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { Menu, X, Globe } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { Button } from '../ui/button';
+import Logo from '../ui/Logo';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -32,8 +33,8 @@ const Header = () => {
             animate={{ opacity: 1, x: 0 }}
             className="flex-shrink-0"
           >
-            <Link to="/" className="text-xl font-bold text-gradient">
-              {t('companyName')}
+            <Link to="/" className="flex items-center">
+              <Logo size="sm" />
             </Link>
           </motion.div>
 
@@ -45,15 +46,15 @@ const Header = () => {
                 to={item.href}
                 className={`px-3 py-2 text-sm font-medium transition-colors relative ${
                   isActive(item.href)
-                    ? 'text-blue-600'
-                    : 'text-gray-700 hover:text-blue-600'
+                    ? 'text-green-600'
+                    : 'text-gray-700 hover:text-green-600'
                 }`}
               >
                 {item.name}
                 {isActive(item.href) && (
                   <motion.div
                     layoutId="activeTab"
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-600"
+                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-green-600"
                     initial={false}
                     transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                   />
@@ -75,7 +76,7 @@ const Header = () => {
             </Button>
 
             <Link to="/quote">
-              <Button size="sm" className="hidden sm:flex">
+              <Button size="sm" className="hidden sm:flex bg-green-600 hover:bg-green-700">
                 {t('getQuote')}
               </Button>
             </Link>
@@ -107,8 +108,8 @@ const Header = () => {
                   to={item.href}
                   className={`block px-3 py-2 text-base font-medium transition-colors ${
                     isActive(item.href)
-                      ? 'text-blue-600 bg-blue-50'
-                      : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'
+                      ? 'text-green-600 bg-green-50'
+                      : 'text-gray-700 hover:text-green-600 hover:bg-gray-50'
                   }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
@@ -117,7 +118,7 @@ const Header = () => {
               ))}
               <Link
                 to="/quote"
-                className="block px-3 py-2 text-base font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-md mt-2"
+                className="block px-3 py-2 text-base font-medium text-white bg-green-600 hover:bg-green-700 rounded-md mt-2"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {t('getQuote')}

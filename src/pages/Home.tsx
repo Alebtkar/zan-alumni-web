@@ -6,7 +6,8 @@ import { ArrowDown, Star, Users, Award, Clock } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { Button } from '../components/ui/button';
 import GradientCard from '../components/ui/GradientCard';
-import { mockProjects, mockServices, mockArticles, mockReviews } from '../data/mockData';
+import { mockProjects, mockArticles, mockReviews } from '../data/mockData';
+import { zanServices } from '../data/services';
 
 const Home = () => {
   const { t, isRTL } = useLanguage();
@@ -50,7 +51,7 @@ const Home = () => {
             alt="Hero"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-900/80 to-gray-900/60"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-green-900/80 to-gray-900/60"></div>
         </div>
         
         <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8">
@@ -60,7 +61,7 @@ const Home = () => {
             transition={{ duration: 0.8 }}
             className="text-4xl md:text-6xl font-bold text-white mb-6"
           >
-            {t('heroTitle')}
+            ZAN ALUMINUM & GLASS SYSTEMS
           </motion.h1>
           
           <motion.p 
@@ -69,7 +70,7 @@ const Home = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-xl md:text-2xl text-gray-200 mb-8 max-w-3xl mx-auto"
           >
-            {t('heroSubtitle')}
+            الرائدون في تصميم وتنفيذ أنظمة الألمونيوم والزجاج المتطورة
           </motion.p>
           
           <motion.div 
@@ -79,7 +80,7 @@ const Home = () => {
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
             <Link to="/quote">
-              <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white">
+              <Button size="lg" className="bg-green-600 hover:bg-green-700 text-white">
                 {t('getQuote')}
               </Button>
             </Link>
@@ -110,7 +111,7 @@ const Home = () => {
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              {t('featuredServices')}
+              خدماتنا المتخصصة
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
               نقدم مجموعة متكاملة من الخدمات المتخصصة في الألمونيوم والزجاج
@@ -118,13 +119,13 @@ const Home = () => {
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {mockServices.map((service, index) => (
+            {zanServices.slice(0, 3).map((service, index) => (
               <GradientCard key={service.id}>
                 <div className="p-6">
                   <div className="text-4xl mb-4">{service.icon}</div>
                   <h3 className="text-xl font-semibold mb-3">{service.title}</h3>
                   <p className="text-gray-600 mb-4">{service.description}</p>
-                  <Link to={`/services/${service.slug}`} className="text-blue-600 hover:text-blue-700 font-medium">
+                  <Link to={`/services/${service.slug}`} className="text-green-600 hover:text-green-700 font-medium">
                     {t('readMore')} ←
                   </Link>
                 </div>
@@ -161,12 +162,12 @@ const Home = () => {
                     className="w-full h-48 object-cover transition-transform duration-300 hover:scale-105"
                   />
                   <div className="p-6">
-                    <span className="inline-block px-3 py-1 text-xs font-medium bg-blue-100 text-blue-800 rounded-full mb-3">
+                    <span className="inline-block px-3 py-1 text-xs font-medium bg-green-100 text-green-800 rounded-full mb-3">
                       {project.type === 'residential' ? 'سكني' : project.type === 'commercial' ? 'تجاري' : 'صناعي'}
                     </span>
                     <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
                     <p className="text-gray-600 mb-4">{project.description}</p>
-                    <Link to={`/projects/${project.slug}`} className="text-blue-600 hover:text-blue-700 font-medium">
+                    <Link to={`/projects/${project.slug}`} className="text-green-600 hover:text-green-700 font-medium">
                       عرض التفاصيل ←
                     </Link>
                   </div>
@@ -186,7 +187,7 @@ const Home = () => {
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-20 bg-gradient-to-br from-blue-50 to-gray-50">
+      <section className="py-20 bg-gradient-to-br from-green-50 to-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
@@ -212,7 +213,7 @@ const Home = () => {
                 transition={{ delay: index * 0.1 }}
                 className="text-center"
               >
-                <div className="bg-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 shadow-lg text-blue-600">
+                <div className="bg-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 shadow-lg text-green-600">
                   {item.icon}
                 </div>
                 <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
@@ -307,7 +308,7 @@ const Home = () => {
                     <h3 className="text-xl font-semibold mb-2">{article.title}</h3>
                     <p className="text-gray-600 mb-4">{article.body.substring(0, 100)}...</p>
                     <div className="flex justify-between items-center">
-                      <Link to={`/news/${article.slug}`} className="text-blue-600 hover:text-blue-700 font-medium">
+                      <Link to={`/news/${article.slug}`} className="text-green-600 hover:text-green-700 font-medium">
                         {t('readMore')} ←
                       </Link>
                       <span className="text-sm text-gray-500">{article.publishedAt}</span>
@@ -329,7 +330,7 @@ const Home = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-blue-800">
+      <section className="py-20 bg-gradient-to-r from-green-600 to-green-800">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
@@ -339,17 +340,17 @@ const Home = () => {
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
               هل لديك مشروع؟
             </h2>
-            <p className="text-xl text-blue-100 mb-8">
+            <p className="text-xl text-green-100 mb-8">
               احصل على استشارة مجانية وعرض أسعار لمشروعك
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/quote">
-                <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100">
+                <Button size="lg" className="bg-white text-green-600 hover:bg-gray-100">
                   احصل على عرض أسعار
                 </Button>
               </Link>
               <Link to="/contact">
-                <Button size="lg" variant="outline" className="text-white border-white hover:bg-white hover:text-blue-600">
+                <Button size="lg" variant="outline" className="text-white border-white hover:bg-white hover:text-green-600">
                   اتصل بنا
                 </Button>
               </Link>
