@@ -9,7 +9,11 @@ import Layout from "./components/layout/Layout";
 import Home from "./pages/Home";
 import Services from "./pages/Services";
 import Projects from "./pages/Projects";
+import ProjectDetail from "./pages/ProjectDetail";
 import News from "./pages/News";
+import NewsDetail from "./pages/NewsDetail";
+import ArticleDetail from "./pages/ArticleDetail";
+import Gallery from "./pages/Gallery";
 import RequestQuote from "./pages/RequestQuote";
 import Careers from "./pages/Careers";
 import Testimonials from "./pages/Testimonials";
@@ -35,7 +39,11 @@ const App = () => (
               <Route path="/" element={<Home />} />
               <Route path="/services" element={<Services />} />
               <Route path="/projects" element={<Projects />} />
+              <Route path="/projects/:slug" element={<ProjectDetail />} />
               <Route path="/news" element={<News />} />
+              <Route path="/news/:slug" element={<NewsDetail />} />
+              <Route path="/articles/:slug" element={<ArticleDetail />} />
+              <Route path="/gallery" element={<Gallery />} />
               <Route path="/quote" element={<RequestQuote />} />
               <Route path="/careers" element={<Careers />} />
               <Route path="/testimonials" element={<Testimonials />} />

@@ -1,8 +1,7 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowDown, Star, Users, Award, Clock } from 'lucide-react';
+import { ArrowDown, Star, Users, Award, Clock, Images } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { Button } from '../components/ui/button';
 import GradientCard from '../components/ui/GradientCard';
@@ -16,6 +15,13 @@ const Home = () => {
     'https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=1920&h=1080&fit=crop',
     'https://images.unsplash.com/photo-1518005020951-eccb494ad742?w=1920&h=1080&fit=crop',
     'https://images.unsplash.com/photo-1496307653780-42ee777d4833?w=1920&h=1080&fit=crop'
+  ];
+
+  const galleryPreviewImages = [
+    'https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=400&h=300&fit=crop',
+    'https://images.unsplash.com/photo-1518005020951-eccb494ad742?w=400&h=300&fit=crop',
+    'https://images.unsplash.com/photo-1496307653780-42ee777d4833?w=400&h=300&fit=crop',
+    'https://images.unsplash.com/photo-1431576901776-e539bd916ba2?w=400&h=300&fit=crop'
   ];
 
   const whyChooseUsData = [
@@ -131,6 +137,56 @@ const Home = () => {
                 </div>
               </GradientCard>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Gallery Preview Section */}
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              معرض أعمالنا
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              شاهد مجموعة من أفضل أعمالنا في مجال الألمونيوم والزجاج
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+            {galleryPreviewImages.map((image, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="relative overflow-hidden rounded-lg group cursor-pointer"
+              >
+                <img 
+                  src={image} 
+                  alt={`معرض الصور ${index + 1}`}
+                  className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-opacity duration-300 flex items-center justify-center">
+                  <Images className="h-8 w-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="text-center">
+            <Link to="/gallery">
+              <Button size="lg" variant="outline" className="group">
+                <Images className="h-5 w-5 mr-2 group-hover:scale-110 transition-transform" />
+                عرض جميع الصور
+              </Button>
+            </Link>
           </div>
         </div>
       </section>

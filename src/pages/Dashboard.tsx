@@ -1,11 +1,12 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { BarChart, Users, FileText, Star, TrendingUp, Calendar, MessageSquare } from 'lucide-react';
+import { BarChart, Users, FileText, Star, TrendingUp, Calendar, MessageSquare, Images, Eye, Edit, Trash2 } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { Button } from '../components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
 import GradientCard from '../components/ui/GradientCard';
+import { mockProjects, mockArticles } from '../data/mockData';
 
 const Dashboard = () => {
   const { t } = useLanguage();
@@ -101,10 +102,12 @@ const Dashboard = () => {
           transition={{ delay: 0.4 }}
         >
           <Tabs defaultValue="quotes" className="space-y-6">
-            <TabsList className="grid w-full grid-cols-3">
+            <TabsList className="grid w-full grid-cols-5">
               <TabsTrigger value="quotes">طلبات العروض</TabsTrigger>
               <TabsTrigger value="applications">طلبات التوظيف</TabsTrigger>
-              <TabsTrigger value="content">إدارة المحتوى</TabsTrigger>
+              <TabsTrigger value="projects">المشاريع</TabsTrigger>
+              <TabsTrigger value="articles">المقالات</TabsTrigger>
+              <TabsTrigger value="gallery">المعرض</TabsTrigger>
             </TabsList>
 
             <TabsContent value="quotes">
@@ -192,35 +195,121 @@ const Dashboard = () => {
               </GradientCard>
             </TabsContent>
 
-            <TabsContent value="content">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <GradientCard>
-                  <div className="p-6 text-center">
-                    <FileText className="h-12 w-12 text-blue-600 mx-auto mb-4" />
-                    <h3 className="text-lg font-semibold mb-2">إدارة المقالات</h3>
-                    <p className="text-gray-600 mb-4">إضافة وتحرير المقالات والأخبار</p>
-                    <Button>إدارة المقالات</Button>
+            <TabsContent value="projects">
+              <GradientCard>
+                <div className="p-6">
+                  <div className="flex justify-between items-center mb-6">
+                    <h3 className="text-lg font-semibold">إدارة المشاريع</h3>
+                    <Button size="sm">إضافة مشروع جديد</Button>
                   </div>
-                </GradientCard>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {mockProjects.map((project) => (
+                      <div key={project.id} className="border rounded-lg p-4 bg-white">
+                        <img 
+                          src={project.images[0]} 
+                          alt={project.title}
+                          className="w-full h-32 object-cover rounded mb-3"
+                        />
+                        <h4 className="font-medium mb-2">{project.title}</h4>
+                        <p className="text-sm text-gray-600 mb-3">{project.type}</p>
+                        <div className="flex gap-2">
+                          <Button variant="outline" size="sm">
+                            <Eye className="h-4 w-4" />
+                          </Button>
+                          <Button variant="outline" size="sm">
+                            <Edit className="h-4 w-4" />
+                          </Button>
+                          <Button variant="outline" size="sm">
+                            <Trash2 className="h-4 w-4" />
+                          </Button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </GradientCard>
+            </TabsContent>
 
-                <GradientCard>
-                  <div className="p-6 text-center">
-                    <BarChart className="h-12 w-12 text-green-600 mx-auto mb-4" />
-                    <h3 className="text-lg font-semibold mb-2">إدارة المشاريع</h3>
-                    <p className="text-gray-600 mb-4">إضافة وتحديث المشاريع</p>
-                    <Button>إدارة المشاريع</Button>
+            <TabsContent value="articles">
+              <GradientCard>
+                <div className="p-6">
+                  <div className="flex justify-between items-center mb-6">
+                    <h3 className="text-lg font-semibold">إدارة المقالات</h3>
+                    <Button size="sm">إضافة مقال جديد</Button>
                   </div>
-                </GradientCard>
+                  
+                  <div className="space-y-4">
+                    {mockArticles.map((article) => (
+                      <div key={article.id} className="flex gap-4 p-4 border rounded-lg bg-white">
+                        {article.image && (
+                          <img 
+                            src={article.image} 
+                            alt={article.title}
+                            className="w-20 h-20 object-cover rounded"
+                          />
+                        )}
+                        <div className="flex-1">
+                          <h4 className="font-medium mb-1">{article.title}</h4>
+                          <p className="text-sm text-gray-600 mb-2">{article.category}</p>
+                          <p className="text-xs text-gray-500">{article.publishedAt}</p>
+                        </div>
+                        <div className="flex gap-2">
+                          <Button variant="outline" size="sm">
+                            <Eye className="h-4 w-4" />
+                          </Button>
+                          <Button variant="outline" size="sm">
+                            <Edit className="h-4 w-4" />
+                          </Button>
+                          <Button variant="outline" size="sm">
+                            <Trash2 className="h-4 w-4" />
+                          </Button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </GradientCard>
+            </TabsContent>
 
-                <GradientCard>
-                  <div className="p-6 text-center">
-                    <MessageSquare className="h-12 w-12 text-purple-600 mx-auto mb-4" />
-                    <h3 className="text-lg font-semibold mb-2">إدارة الخدمات</h3>
-                    <p className="text-gray-600 mb-4">تحديث وإدارة الخدمات</p>
-                    <Button>إدارة الخدمات</Button>
+            <TabsContent value="gallery">
+              <GradientCard>
+                <div className="p-6">
+                  <div className="flex justify-between items-center mb-6">
+                    <h3 className="text-lg font-semibold">إدارة المعرض</h3>
+                    <Button size="sm">إضافة صور جديدة</Button>
                   </div>
-                </GradientCard>
-              </div>
+                  
+                  <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                    {[
+                      'https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=200&h=200&fit=crop',
+                      'https://images.unsplash.com/photo-1518005020951-eccb494ad742?w=200&h=200&fit=crop',
+                      'https://images.unsplash.com/photo-1496307653780-42ee777d4833?w=200&h=200&fit=crop',
+                      'https://images.unsplash.com/photo-1431576901776-e539bd916ba2?w=200&h=200&fit=crop',
+                      'https://images.unsplash.com/photo-1449157291145-7efd050a4d0e?w=200&h=200&fit=crop',
+                      'https://images.unsplash.com/photo-1459767129954-1b1c1f9b9ace?w=200&h=200&fit=crop'
+                    ].map((image, index) => (
+                      <div key={index} className="relative group">
+                        <img 
+                          src={image} 
+                          alt={`صورة ${index + 1}`}
+                          className="w-full h-24 object-cover rounded"
+                        />
+                        <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-opacity duration-200 rounded flex items-center justify-center">
+                          <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex gap-2">
+                            <Button variant="outline" size="sm" className="p-1 h-8 w-8">
+                              <Edit className="h-3 w-3" />
+                            </Button>
+                            <Button variant="outline" size="sm" className="p-1 h-8 w-8">
+                              <Trash2 className="h-3 w-3" />
+                            </Button>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </GradientCard>
             </TabsContent>
           </Tabs>
         </motion.div>
