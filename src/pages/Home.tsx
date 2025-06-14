@@ -210,25 +210,27 @@ const Home = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
             {mockProjects.slice(0, 3).map((project, index) => (
-              <GradientCard key={project.id}>
-                <div className="overflow-hidden">
-                  <img 
-                    src={project.images[0]} 
-                    alt={project.title}
-                    className="w-full h-48 object-cover transition-transform duration-300 hover:scale-105"
-                  />
-                  <div className="p-6">
-                    <span className="inline-block px-3 py-1 text-xs font-medium bg-green-100 text-green-800 rounded-full mb-3">
-                      {project.type === 'residential' ? 'سكني' : project.type === 'commercial' ? 'تجاري' : 'صناعي'}
-                    </span>
-                    <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-                    <p className="text-gray-600 mb-4">{project.description}</p>
-                    <Link to={`/projects/${project.slug}`} className="text-green-600 hover:text-green-700 font-medium">
-                      عرض التفاصيل ←
-                    </Link>
+              <Link key={project.id} to={`/projects/${project.slug}`}>
+                <GradientCard>
+                  <div className="overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                    <img 
+                      src={project.images[0]} 
+                      alt={project.title}
+                      className="w-full h-48 object-cover transition-transform duration-300 hover:scale-105"
+                    />
+                    <div className="p-6">
+                      <span className="inline-block px-3 py-1 text-xs font-medium bg-green-100 text-green-800 rounded-full mb-3">
+                        {project.type === 'residential' ? 'سكني' : project.type === 'commercial' ? 'تجاري' : 'صناعي'}
+                      </span>
+                      <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
+                      <p className="text-gray-600 mb-4">{project.description}</p>
+                      <span className="text-green-600 hover:text-green-700 font-medium">
+                        عرض التفاصيل ←
+                      </span>
+                    </div>
                   </div>
-                </div>
-              </GradientCard>
+                </GradientCard>
+              </Link>
             ))}
           </div>
 
@@ -350,28 +352,30 @@ const Home = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
             {mockArticles.map((article, index) => (
-              <GradientCard key={article.id}>
-                <div className="overflow-hidden">
-                  <img 
-                    src={article.image} 
-                    alt={article.title}
-                    className="w-full h-48 object-cover"
-                  />
-                  <div className="p-6">
-                    <span className="inline-block px-3 py-1 text-xs font-medium bg-green-100 text-green-800 rounded-full mb-3">
-                      {article.category}
-                    </span>
-                    <h3 className="text-xl font-semibold mb-2">{article.title}</h3>
-                    <p className="text-gray-600 mb-4">{article.body.substring(0, 100)}...</p>
-                    <div className="flex justify-between items-center">
-                      <Link to={`/news/${article.slug}`} className="text-green-600 hover:text-green-700 font-medium">
-                        {t('readMore')} ←
-                      </Link>
-                      <span className="text-sm text-gray-500">{article.publishedAt}</span>
+              <Link key={article.id} to={`/news/${article.slug}`}>
+                <GradientCard>
+                  <div className="overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                    <img 
+                      src={article.image} 
+                      alt={article.title}
+                      className="w-full h-48 object-cover"
+                    />
+                    <div className="p-6">
+                      <span className="inline-block px-3 py-1 text-xs font-medium bg-green-100 text-green-800 rounded-full mb-3">
+                        {article.category}
+                      </span>
+                      <h3 className="text-xl font-semibold mb-2">{article.title}</h3>
+                      <p className="text-gray-600 mb-4">{article.body.substring(0, 100)}...</p>
+                      <div className="flex justify-between items-center">
+                        <span className="text-green-600 hover:text-green-700 font-medium">
+                          {t('readMore')} ←
+                        </span>
+                        <span className="text-sm text-gray-500">{article.publishedAt}</span>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </GradientCard>
+                </GradientCard>
+              </Link>
             ))}
           </div>
 

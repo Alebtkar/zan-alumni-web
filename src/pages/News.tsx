@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Calendar, User, Tag } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -56,39 +57,41 @@ const News = () => {
         {/* Articles Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredArticles.map((article, index) => (
-            <GradientCard key={article.id}>
-              <div className="overflow-hidden">
-                <img 
-                  src={article.image} 
-                  alt={article.title}
-                  className="w-full h-48 object-cover transition-transform duration-300 hover:scale-105"
-                />
-                <div className="p-6">
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="inline-block px-3 py-1 text-xs font-medium bg-green-100 text-green-800 rounded-full">
-                      {article.category}
-                    </span>
-                    <div className="flex items-center text-sm text-gray-500">
-                      <Calendar className="h-4 w-4 mr-1" />
-                      {new Date(article.publishedAt).toLocaleDateString('ar-LY')}
+            <Link key={article.id} to={`/news/${article.slug}`}>
+              <GradientCard>
+                <div className="overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                  <img 
+                    src={article.image} 
+                    alt={article.title}
+                    className="w-full h-48 object-cover transition-transform duration-300 hover:scale-105"
+                  />
+                  <div className="p-6">
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="inline-block px-3 py-1 text-xs font-medium bg-green-100 text-green-800 rounded-full">
+                        {article.category}
+                      </span>
+                      <div className="flex items-center text-sm text-gray-500">
+                        <Calendar className="h-4 w-4 mr-1" />
+                        {new Date(article.publishedAt).toLocaleDateString('ar-LY')}
+                      </div>
                     </div>
-                  </div>
-                  
-                  <h3 className="text-xl font-semibold mb-3 line-clamp-2">{article.title}</h3>
-                  <p className="text-gray-600 mb-4 line-clamp-3">{article.body}</p>
-                  
-                  <div className="flex justify-between items-center">
-                    <Button variant="outline" size="sm">
-                      {t('readMore')}
-                    </Button>
-                    <div className="flex items-center text-sm text-gray-500">
-                      <User className="h-4 w-4 mr-1" />
-                      فريق التحرير
+                    
+                    <h3 className="text-xl font-semibold mb-3 line-clamp-2">{article.title}</h3>
+                    <p className="text-gray-600 mb-4 line-clamp-3">{article.body}</p>
+                    
+                    <div className="flex justify-between items-center">
+                      <span className="text-green-600 hover:text-green-700 font-medium">
+                        {t('readMore')}
+                      </span>
+                      <div className="flex items-center text-sm text-gray-500">
+                        <User className="h-4 w-4 mr-1" />
+                        فريق التحرير
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </GradientCard>
+              </GradientCard>
+            </Link>
           ))}
         </div>
 
