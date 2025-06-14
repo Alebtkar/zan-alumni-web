@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 import GradientCard from '../components/ui/GradientCard';
@@ -41,7 +42,7 @@ const Services = () => {
                   <p className="text-gray-600 leading-relaxed mb-6">
                     {service.description}
                   </p>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-2 mb-6">
                     <span className="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full">
                       تصميم
                     </span>
@@ -52,6 +53,12 @@ const Services = () => {
                       صيانة
                     </span>
                   </div>
+                  <Link 
+                    to={`/services/${service.slug}`} 
+                    className="text-green-600 hover:text-green-700 font-medium"
+                  >
+                    عرض التفاصيل ←
+                  </Link>
                 </div>
               </div>
             </GradientCard>
